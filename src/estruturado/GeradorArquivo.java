@@ -29,11 +29,6 @@ public class GeradorArquivo {
 		return processaCompactacao(conteudo.getBytes());
 	}
 	
-	private byte[] processaPropriedadesCriptografado(Map<String, Object> propriedades) {
-		String conteudo = geraConteudoPropriedades(propriedades);
-		return processaCriptografado(conteudo.getBytes());
-	}
-	
 	private String geraConteudoXml(Map<String, Object> propriedades) {
 		//gera xml
 		StringBuilder propFileBuilder = new StringBuilder();
@@ -45,15 +40,6 @@ public class GeradorArquivo {
 		return propFileBuilder.toString();	
 	}
 	
-	private String geraConteudoPropriedades(Map<String, Object> propriedades) {
-		//gera properties
-		StringBuilder propFileBuilder = new StringBuilder();
-		for (String prop: propriedades.keySet()) {
-			propFileBuilder.append(prop+"="+propriedades.get(prop)+"\n");
-		}
-		return propFileBuilder.toString();
-	}
-	
 	private byte[] processaCompactacao(byte[] bytes) throws IOException {
 		//compacta
 		ByteArrayOutputStream byteout = new ByteArrayOutputStream();
@@ -63,15 +49,6 @@ public class GeradorArquivo {
 		out.closeEntry();
 		out.close();
 		return byteout.toByteArray();	
-	}
-	
-	private byte[] processaCriptografado(byte[] bs) {
-		//criptografia
-		byte[] newBytes = new byte[bs.length];
-		for (int i = 0; i<bs.length; i++) {
-			newBytes[i] = (byte)((bs[i]+10) % Byte.MAX_VALUE);
-		}
-		return newBytes;
 	}
 
 }
