@@ -2,7 +2,11 @@ package estruturado;
 
 import java.util.Map;
 
-public class GeradorArquivoPropriedadesCriptografado extends GeradorArquivo{
+public class GeradorArquivoPropriedades extends GeradorArquivo{
+	
+	public GeradorArquivoPropriedades(Processador processador) {
+		super(processador);
+	}
 	
 	@Override
 	protected String gerarConteudo(Map<String, Object> propriedades) {
@@ -12,16 +16,6 @@ public class GeradorArquivoPropriedadesCriptografado extends GeradorArquivo{
 			propFileBuilder.append(prop+"="+propriedades.get(prop)+"\n");
 		}
 		return propFileBuilder.toString();
-	}
-	
-	@Override
-	protected byte[] processaConteudo(byte[] bs) {
-		//criptografia
-		byte[] newBytes = new byte[bs.length];
-		for (int i = 0; i<bs.length; i++) {
-			newBytes[i] = (byte)((bs[i]+10) % Byte.MAX_VALUE);
-		}
-		return newBytes;
 	}
 
 }

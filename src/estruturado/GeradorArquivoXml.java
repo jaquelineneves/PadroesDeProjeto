@@ -6,8 +6,11 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class GeradorArquivoXmlCompactado extends GeradorArquivo {
+public class GeradorArquivoXml extends GeradorArquivo {
 	
+	public GeradorArquivoXml(Processador processador) {
+		super(processador);
+	}
 	@Override
 	protected String gerarConteudo(Map<String, Object> propriedades) {
 		//gera xml

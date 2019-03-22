@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ProcessaCompactado {
+public class ProcessaCompactado implements Processador {
 	
 	@Override
 	public byte[] processaConteudo(byte[] bytes) throws IOException {
