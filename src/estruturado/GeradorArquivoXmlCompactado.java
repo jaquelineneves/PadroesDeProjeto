@@ -6,14 +6,10 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ProcessaXmlCompactado {
+public class GeradorArquivoXmlCompactado extends GeradorArquivo {
 	
-	public byte[] processaXmlCompactado(Map<String, Object> propriedades) throws IOException {
-		String conteudo = geraConteudoXml(propriedades);
-		return processaCompactacao(conteudo.getBytes());
-	}
-	
-	private String geraConteudoXml(Map<String, Object> propriedades) {
+	@Override
+	protected String gerarConteudo(Map<String, Object> propriedades) {
 		//gera xml
 		StringBuilder propFileBuilder = new StringBuilder();
 		propFileBuilder.append("<properties>");
@@ -24,7 +20,8 @@ public class ProcessaXmlCompactado {
 		return propFileBuilder.toString();	
 	}
 	
-	private byte[] processaCompactacao(byte[] bytes) throws IOException {
+	@Override
+	protected byte[] processaConteudo(byte[] bytes) throws IOException {
 		//compacta
 		ByteArrayOutputStream byteout = new ByteArrayOutputStream();
 		ZipOutputStream out = new ZipOutputStream(byteout);
