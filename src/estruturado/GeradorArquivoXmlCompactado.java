@@ -20,16 +20,4 @@ public class GeradorArquivoXmlCompactado extends GeradorArquivo {
 		return propFileBuilder.toString();	
 	}
 	
-	@Override
-	protected byte[] processaConteudo(byte[] bytes) throws IOException {
-		//compacta
-		ByteArrayOutputStream byteout = new ByteArrayOutputStream();
-		ZipOutputStream out = new ZipOutputStream(byteout);
-		out.putNextEntry(new ZipEntry("internal"));
-		out.write(bytes);
-		out.closeEntry();
-		out.close();
-		return byteout.toByteArray();	
-	}
-	
 }
