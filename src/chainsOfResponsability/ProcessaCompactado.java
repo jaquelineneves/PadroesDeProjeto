@@ -5,10 +5,18 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ProcessaCompactado implements Processador {
+public class ProcessaCompactado extends Processador {
+	
+	public ProcessaCompactado(Processador proximo) {
+		super(proximo);
+	}
+	
+	public ProcessaCompactado() {
+		
+	}
 	
 	@Override
-	public byte[] processaConteudo(byte[] bytes) throws IOException {
+	protected byte[] processaConteudo(byte[] bytes) throws IOException {
 		//compacta
 		ByteArrayOutputStream byteout = new ByteArrayOutputStream();
 		ZipOutputStream out = new ZipOutputStream(byteout);

@@ -1,9 +1,17 @@
 package chainsOfResponsability;
 
-public class ProcessaCriptografado implements Processador {
+public class ProcessaCriptografado extends Processador {
+	
+	public ProcessaCriptografado(Processador proximo) {
+		super(proximo);
+	}
+	
+	public ProcessaCriptografado() {
+		
+	}
 	
 	@Override
-	public byte[] processaConteudo(byte[] bs) {
+	protected byte[] processaConteudo(byte[] bs) {
 		//criptografia
 		byte[] newBytes = new byte[bs.length];
 		for (int i = 0; i<bs.length; i++) {

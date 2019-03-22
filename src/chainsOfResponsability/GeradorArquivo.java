@@ -15,7 +15,7 @@ public abstract class GeradorArquivo {
 	
 	public final void gerarArquivo(String nome, Map<String, Object> propriedades) throws IOException {
 		String conteudo = gerarConteudo(propriedades);
-		byte[] bytes = processador.processaConteudo(conteudo.getBytes()); //o processador vai processar o conteudo sem saber se é compactado, criptografado ou default. 
+		byte[] bytes = processador.processarCadeia(conteudo.getBytes()); //o processador vai processar o conteudo sem saber se é compactado, criptografado ou default. 
 		FileOutputStream fileout = new FileOutputStream(nome);
 		fileout.write(bytes);
 		fileout.close();		
