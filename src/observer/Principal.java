@@ -26,6 +26,7 @@ public class Principal {
 		processadores2.add(new ProcessaCompactado());
 		
 		GeradorArquivo gerador = new GeradorArquivoPropriedades(new ProcessadorComposto(processadores));
+		gerador.addObservador(new LogService());
 		gerador.gerarArquivo("c:\\Gerador\\prop1.zip", mapa);//gera um arquivo criptografado e depois zipado
 
 		GeradorArquivo gerador1 = new GeradorArquivoXml(new ProcessadorComposto(processadores1));
